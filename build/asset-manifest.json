@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c695b97.css",
+    "main.js": "/static/js/main.1e6b0f57.js",
+    "static/js/453.58a75849.chunk.js": "/static/js/453.58a75849.chunk.js",
+    "static/media/grass.jpg": "/static/media/grass.e14f48a33b85f814f9b6.jpg",
+    "static/media/junk.jpg": "/static/media/junk.e50d871b3cba3b3b5cb0.jpg",
+    "static/media/office.jpg": "/static/media/office.6758a33c8d3503398e06.jpg",
+    "static/media/lawn.jpg": "/static/media/lawn.da9b6271c122239bf070.jpg",
+    "static/media/window.jpg": "/static/media/window.bfc92a4ec50c269a9180.jpg",
+    "static/media/snow.jpg": "/static/media/snow.604a58a362d190173291.jpg",
+    "static/media/litter.jpg": "/static/media/litter.1866d44fd8ea2e4f8f15.jpg",
+    "static/media/construction.jpg": "/static/media/construction.89be97801273371e3879.jpg",
+    "static/media/home.jpg": "/static/media/home.361fc21a3489b42597af.jpg",
+    "static/media/pressure.jpg": "/static/media/pressure.b679d87ebf4d867aee30.jpg",
+    "static/media/deep.jpg": "/static/media/deep.a046d96519402a970aa4.jpg",
+    "static/media/janitor.jpg": "/static/media/janitor.da71b391f9634cadeb33.jpg",
+    "index.html": "/index.html",
+    "main.3c695b97.css.map": "/static/css/main.3c695b97.css.map",
+    "main.1e6b0f57.js.map": "/static/js/main.1e6b0f57.js.map",
+    "453.58a75849.chunk.js.map": "/static/js/453.58a75849.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c695b97.css",
+    "static/js/main.1e6b0f57.js"
+  ]
+}
