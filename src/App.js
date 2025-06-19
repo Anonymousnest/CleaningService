@@ -82,15 +82,74 @@ function AboutSection() {
 }
 
 function ContactSection() {
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [status, setStatus] = React.useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatus('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('Failed to send message.');
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('An error occurred.');
+    }
+  };
+
   return (
     <div className="contact-section" id="contact">
       <h2>Contact Us</h2>
-      <form className="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" rows="4" required></textarea>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="4"
+          required
+          value={formData.message}
+          onChange={handleChange}
+        ></textarea>
         <button type="submit">Send Message</button>
       </form>
+      {status && <p className="status-message">{status}</p>}
     </div>
   );
 }
