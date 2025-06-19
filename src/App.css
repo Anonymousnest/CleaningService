@@ -222,3 +222,28 @@ button[class*="next"],
 button[class*="prev"] {
   display: none !important;
 }
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 1.8rem;
+    padding: 5px 0;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin-left: 0;
+    font-size: 0.95rem;
+  }
+}
