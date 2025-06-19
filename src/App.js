@@ -12,7 +12,6 @@ const services = [
   { title: 'Hot/Cold Pressure Washing', image: images.pressure, description: 'Deep surface cleaning using advanced pressure washing techniques.' },
   { title: 'Post Construction Clean Up', image: images.postConstruction, description: 'Thorough cleaning after construction or renovation to remove dust and debris.' },
   { title: 'Window Cleaning', image: images.window, description: 'Crystal-clear results with streak-free shine for all your windows.' },
-  { title: 'Home Cleaning', image: images.home, description: 'Ensure proper drainage with our effective gutter cleaning service.' },
   { title: 'Office Cleaning', image: images.office, description: 'Restore your surfaces by removing unwanted graffiti quickly and safely.' },
   { title: 'Deep Cleaning', image: images.deep, description: 'Maintain cleanliness and professionalism in your parking areas.' },
 ];
