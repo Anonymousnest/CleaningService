@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
-    return res.status(405).json({ error: `Method ${req.method} not allowed` });
+    return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
   }
 
   const { name, email, message } = req.body;
@@ -14,31 +14,40 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
 
-  // Create SMTP transporter using environment variables
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT || 587,
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+  // Configure SMTP transporter using environment variables
+  let transporter;
+  try {
+    transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+  } catch (err) {
+    console.error('Transporter configuration error:', err);
+    return res.status(500).json({ error: 'Server configuration error.' });
+  }
 
+  // Compose and send the email
   try {
     await transporter.sendMail({
-      from: `"Contact Form" <${process.env.SMTP_USER}>`,
+      from: `"Website Contact" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_RECEIVER,
-      subject: `New message from ${name}`,
-      text: message,
-      html: `<p><strong>Name:</strong> ${name}</p>
-             <p><strong>Email:</strong> ${email}</p>
-             <p>${message}</p>`,
+      subject: `New contact form submission from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
     });
-
     return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error('Email send error:', error);
+  } catch (err) {
+    console.error('Email send error:', err);
     return res.status(500).json({ error: 'Failed to send email.' });
   }
 }
